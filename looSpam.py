@@ -218,5 +218,5 @@ def leaveOneOutCrossValidation(X, y, lambdas, epsilon, rho):
 
 # leave one out cross validation
 lambdas = [0.0001, 0.001, 0.01, 0.1, 1]
-lOOLamb = leaveOneOutCrossValidation(X_train[0:1000,:], y_train[0:1000,:], lambdas, 0.001, 2)
+lOOLamb = leaveOneOutCrossValidation(X_train, y_train, lambdas, 0.001, 2)
 print(lOOLamb)
