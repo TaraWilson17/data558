@@ -19,7 +19,7 @@ y_train_unfiltered = np.load('train_labels.npy')
 x_test_unfiltered = np.load('val_features.npy')
 y_test_unfiltered = np.load('val_labels.npy')
 
-kaggleTest = np.load(o'test_features.npy')
+kaggleTest = np.load('test_features.npy')
 
 # filter testing data to two classes: 4, 7
 x_train = np.zeros((1000, x_train_unfiltered.shape[1]))
