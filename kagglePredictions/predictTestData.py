@@ -239,7 +239,7 @@ def predictLabel(testData, lambdas):
             eq = (1/n * X_train.T.dot(X_train))
             eigenVals = eigh(eq)[0]
             initialStepSize = 1 / (max(eigenVals) + lamb)
-            betas, objs = myrhologistic(X_train, y_train, initialStepSize, 0.001, 2, lamb)
+            betas, objs = myrhologistic(X_train, y_train, initialStepSize, 0.01, 2, lamb)
             prediction = np.sum(np.dot(testData, betas[-1]))
             if(prediction > 0):
                 prediction = i
