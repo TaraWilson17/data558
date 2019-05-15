@@ -19,8 +19,6 @@ y_train_unfiltered = np.load('train_labels.npy')
 x_test_unfiltered = np.load('val_features.npy')
 y_test_unfiltered = np.load('val_labels.npy')
 
-kaggleTest = np.load('test_features.npy')
-
 # filter testing data to two classes: 4, 7
 x_train = np.zeros((1000, x_train_unfiltered.shape[1]))
 y_train = np.zeros((1000, 1))
@@ -242,7 +240,7 @@ def predictLabel(testData, lambdas):
             eigenVals = eigh(eq)[0]
             initialStepSize = 1 / (max(eigenVals) + lamb)
             betas, objs = myrhologistic(X_train, y_train, initialStepSize, 0.001, 2, lamb)
-            prediction = np.sum(np.dot(kaggleTest[i], betas[-1]))
+            prediction = np.sum(np.dot(testData, betas[-1]))
             if(prediction > 0):
                 prediction = i
             else:
@@ -252,8 +250,9 @@ def predictLabel(testData, lambdas):
 
 y_predictions = np.zeros((len(y_test_unfiltered), 0))
 for i in range(len(x_test_unfiltered)):
+    print("Run Number: ", i)
     predictedLabel = predictLabel(x_test_unfiltered[i], lambdas)
-    print("Run Number: ", i, predictedLabel)
+    print("Prediction: ", predictedLabel)
     y_predictions[i] = predictedLabel
 
 print("COMPLETE!!!")
