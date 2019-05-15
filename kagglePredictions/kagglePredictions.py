@@ -164,13 +164,15 @@ def predictLabel(testData, lambdas):
             eq = (1/n * X_train.T.dot(X_train))
             eigenVals = eigh(eq)[0]
             initialStepSize = 1 / (max(eigenVals) + lamb)
-            betas, objs = myrhologistic(X_train, y_train, initialStepSize, 0.001, 2, lamb)
+            #betas, objs = myrhologistic(X_train, y_train, initialStepSize, 0.001, 2, lamb)
+            betas, objs = myrhologistic(X_train, y_train, initialStepSize, 1, 2, 0.1)
             prediction = np.sum(np.dot(testData, betas[-1]))
             if(prediction > 0):
-                prediction = i
-            else:
                 prediction = j
+            else:
+                prediction = i
             predictions.append(prediction)
+            print("Status: ", i, j, prediction)
     return Counter(predictions).most_common(1)[0][0]
 
 lambdas = np.array([[0.e+00, 1.e+00, 1.e-04, 1.e-04, 1.e-04, 1.e-04, 1.e+00, 1.e-04, 1.e-04, 1.e-04],
